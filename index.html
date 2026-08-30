@@ -3384,7 +3384,7 @@
         background-color: #258bce;
         background-image: linear-gradient(135deg, rgba(37,139,206,.14), rgba(7,49,90,.30)), url("hero-sky.png");
         background-position: center center;
-        background-size: 100% 100%;
+        background-size: cover;
       }
       .mobile-resume-screen .hero-mini-resume {
         position: relative;
@@ -3443,51 +3443,6 @@
       }
     }
 
-    /* 移动端禁用 fixed 背景，避免部分手机浏览器无法绘制云彩背景。 */
-    @media (max-width: 760px) {
-      body::before {
-        display: none;
-      }
-
-      .hero,
-      .home-highlights,
-      .module-section,
-      #contact,
-      .module-modal,
-      .mobile-resume-screen {
-        background-attachment: scroll !important;
-        background-size: cover;
-        background-position: center center;
-      }
-
-      /* 手机首屏显示整张云彩图，避免 cover 只截取中间的蓝天区域。 */
-      .hero,
-      .mobile-resume-screen {
-        background-size: 100% 100%;
-        background-position: center center;
-      }
-
-      /* 移动端使用整页唯一的固定云彩背景，滚动内容时背景保持连续。 */
-      body {
-        background-color: #258bce !important;
-        background-image: linear-gradient(135deg, rgba(37,139,206,.14), rgba(7,49,90,.30)), url("hero-sky.png") !important;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-      }
-
-      .hero,
-      .home-highlights,
-      .module-section,
-      #contact,
-      .module-modal,
-      .mobile-resume-screen {
-        background-image: none !important;
-        background-color: transparent !important;
-        background-attachment: initial !important;
-      }
-    }
   </style>
 </head>
 
