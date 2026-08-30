@@ -3459,6 +3459,13 @@
         background-size: cover;
         background-position: center center;
       }
+
+      /* 手机首屏显示整张云彩图，避免 cover 只截取中间的蓝天区域。 */
+      .hero,
+      .mobile-resume-screen {
+        background-size: 100% 100%;
+        background-position: center center;
+      }
     }
   </style>
 </head>
