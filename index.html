@@ -3442,6 +3442,20 @@
         font-size: 18px;
       }
     }
+
+    /* 移动端禁用 fixed 背景，避免部分手机浏览器无法绘制云彩背景。 */
+    @media (max-width: 760px) {
+      .hero,
+      .home-highlights,
+      .module-section,
+      #contact,
+      .module-modal,
+      .mobile-resume-screen {
+        background-attachment: scroll !important;
+        background-size: cover;
+        background-position: center center;
+      }
+    }
   </style>
 </head>
 
