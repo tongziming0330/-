@@ -3445,6 +3445,10 @@
 
     /* 移动端禁用 fixed 背景，避免部分手机浏览器无法绘制云彩背景。 */
     @media (max-width: 760px) {
+      body::before {
+        display: none;
+      }
+
       .hero,
       .home-highlights,
       .module-section,
