@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="佟子铭个人简历｜中南财经政法大学｜AI工具应用｜PPT｜前端基础｜音乐创作">
-  <meta name="theme-color" content="#4b9bc6">
+  <meta name="theme-color" content="#0b1117">
   <title>佟子铭｜个人简历</title>
 
   <style>
@@ -2156,7 +2156,7 @@
     body::before {
       z-index: 0;
       opacity: .32;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      background-image: none;
       mask-image: none;
       pointer-events: none;
     }
@@ -2401,8 +2401,8 @@
       min-height: 720px;
       aspect-ratio: auto;
       overflow: hidden;
-      background-color: #258bce;
-      background-image: url("hero-sky.png");
+      background-color: var(--bg);
+      background-image: none;
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
@@ -2979,43 +2979,134 @@
       .border-glow-card { --glow-padding: 22px; }
     }
 
-    /* 后续页面复用首页 hero-sky.png 的蓝天云层、明亮青蓝和深蓝阴影色调 */
+    /* ======================================
+       Engineering graphite palette
+       Keep the existing layout; replace decorative sky artwork with a
+       restrained technical colour system.
+       ====================================== */
+    :root,
+    html[data-theme="dark"] {
+      --bg: #0b1117;
+      --surface: rgba(17, 27, 37, .94);
+      --surface-solid: #111b25;
+      --surface-soft: #172532;
+      --text: #e6edf3;
+      --text-2: #a7b6c5;
+      --text-3: #708394;
+      --border: rgba(157, 183, 201, .22);
+      --primary: #3bd5ff;
+      --primary-2: #8be9ff;
+      --accent: #ffb454;
+      --sky: #0b1117;
+      --sky-deep: #101d28;
+      --ink: #e6edf3;
+      --paper: #e6edf3;
+      --signal: #3bd5ff;
+      --line: rgba(157, 183, 201, .22);
+      --shadow: 0 18px 48px rgba(0, 0, 0, .34);
+      --shadow-hover: 0 22px 58px rgba(0, 0, 0, .46);
+    }
+
+    body {
+      background: var(--bg) !important;
+      color: var(--text) !important;
+    }
+
+    body::before {
+      background-image: none !important;
+      opacity: 0 !important;
+    }
+
+    .hero,
+    .home-highlights,
+    .module-section,
+    #contact,
+    footer {
+      background-color: var(--bg) !important;
+      background-image: none !important;
+      background-attachment: initial !important;
+    }
+
+    .hero { color: var(--text); }
+    .hero-manifesto,
+    .hero-copy-area,
+    .hero-profile { background: var(--bg); }
+    .nav-links { background: var(--surface-solid); box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+    .nav-link { color: var(--text-2); }
+    .nav-link:hover { color: var(--primary); }
+    .contact-nav { background: var(--surface-solid); color: var(--text); }
+    .contact-nav span { background: var(--primary); color: #07131d; }
+    .nav-profile { color: var(--text); }
+    .nav-profile-avatar { border-color: var(--border); }
+
+    .hero-name,
+    .hero-hello,
+    .trait-no,
+    .hero-motto::after,
+    .section-kicker,
+    .highlight-number,
+    .module-number { color: var(--primary); }
+    .hero-motto,
+    .hero-corner,
+    .trait-word,
+    .section-title,
+    .module-section-head h2,
+    .highlight-title,
+    .module-title,
+    .module-desc,
+    .section-desc { color: var(--text); }
+    .hero-motto::before,
+    .section-head { background: transparent; border-color: var(--border); }
+
+    .highlight,
+    .module-card,
+    .card,
+    .skill-card,
+    .education-card,
+    .certification-card,
+    .certification-section .certification-item {
+      background: var(--surface) !important;
+      color: var(--text);
+      border-color: var(--border) !important;
+      box-shadow: none !important;
+    }
+    .highlight:hover,
+    .module-card:hover { background: var(--surface-soft) !important; }
+    .module-card::before { background: var(--primary); }
+    .module-icon { color: var(--primary); }
+    .module-arrow { color: var(--primary); }
+    .contact-card { background: var(--surface-solid); color: var(--text); border-color: var(--border); box-shadow: 12px 12px 0 var(--primary); }
+    .contact-card p { color: var(--text-2); }
+    .contact-btn { color: var(--text); border-color: var(--border) !important; }
+    .contact-btn:hover { background: var(--primary); color: #07131d; }
+    .module-modal { background: rgba(4, 8, 12, .82) !important; background-image: none !important; }
+    .module-modal .modal-inner { background: var(--surface-solid); background-image: none !important; }
+    .modal-topbar { background: var(--surface); border-color: var(--border); }
+    .modal-heading-icon { background: var(--primary); color: #07131d; }
+    .modal-close { background: var(--surface-soft); color: var(--text); }
+    .tab[aria-selected="true"] { color: var(--primary); background: var(--surface-soft); }
+    .back-top { background: var(--primary); color: #07131d; }
+
+    /* Remove the reused hero-sky artwork from every section. */
     .home-highlights,
     .module-section,
     #contact {
-      background-color: #258bce;
-      background-image:
-        linear-gradient(135deg, rgba(37,139,206,.14), rgba(7,49,90,.30)),
-        url("hero-sky.png");
-      background-position: center center;
-      background-size: cover;
-      background-attachment: fixed;
+      background: var(--bg) !important;
     }
     .module-modal .modal-inner {
-      background-image:
-        linear-gradient(135deg, rgba(37,139,206,.34), rgba(7,49,90,.54)),
-        url("hero-sky.png");
-      background-position: center center;
-      background-size: cover;
+      background-image: none !important;
     }
     .module-modal {
-      background-color: rgba(37,139,206,.72) !important;
-      background-image: linear-gradient(135deg, rgba(37,139,206,.58), rgba(7,49,90,.62)), url("hero-sky.png") !important;
-      background-position: center center;
-      background-size: cover;
+      background: rgba(4, 8, 12, .82) !important;
     }
     footer {
-      background: #258bce;
-      color: var(--ink);
+      background: var(--bg) !important;
+      color: var(--text);
     }
 
     /* 首页与后续模块使用完全一致的蓝天底色。 */
     .hero {
-      background-color: #258bce;
-      background-image: linear-gradient(135deg, rgba(37,139,206,.14), rgba(7,49,90,.30)), url("hero-sky.png");
-      background-position: center center;
-      background-size: cover;
-      background-attachment: fixed;
+      background: var(--bg) !important;
     }
 
     /* 首页仅保留中心标题，移除环绕关键词及其连线 */
@@ -3381,8 +3472,8 @@
         min-height: 100svh;
         padding: 82px 20px 36px;
         place-items: center;
-        background-color: #258bce;
-        background-image: linear-gradient(135deg, rgba(37,139,206,.14), rgba(7,49,90,.30)), url("hero-sky.png");
+        background-color: var(--bg);
+        background-image: none;
         background-position: center center;
         background-size: cover;
       }
@@ -3443,6 +3534,77 @@
       }
     }
 
+    /* Final colour overrides: preserve layout and remove all sky artwork. */
+    :root,
+    html[data-theme="dark"] {
+      --bg: #0b1117;
+      --surface: rgba(17, 27, 37, .94);
+      --surface-solid: #111b25;
+      --surface-soft: #172532;
+      --text: #e6edf3;
+      --text-2: #a7b6c5;
+      --text-3: #708394;
+      --border: rgba(157, 183, 201, .22);
+      --primary: #3bd5ff;
+      --primary-2: #8be9ff;
+      --accent: #ffb454;
+      --sky: #0b1117;
+      --sky-deep: #101d28;
+      --ink: #e6edf3;
+      --paper: #e6edf3;
+      --signal: #3bd5ff;
+      --line: rgba(157, 183, 201, .22);
+    }
+    body,
+    .hero,
+    .home-highlights,
+    .module-section,
+    #contact,
+    footer {
+      background: var(--bg) !important;
+      background-image: none !important;
+      color: var(--text);
+    }
+    body::before { background-image: none !important; opacity: 0 !important; }
+    .hero-manifesto, .hero-copy-area, .hero-profile { background: var(--bg); }
+    .nav-links { background: var(--surface-solid); }
+    .contact-nav { background: var(--surface-solid); color: var(--text); }
+    .contact-nav span { background: var(--primary); color: #07131d; }
+    .hero-name, .hero-hello, .trait-no, .section-kicker, .highlight-number, .module-number { color: var(--primary); }
+    .hero-motto, .hero-corner, .trait-word, .section-title, .module-section-head h2, .highlight-title, .module-title, .module-desc, .section-desc { color: var(--text); }
+    .highlight, .module-card, .card, .skill-card, .education-card, .certification-card, .certification-section .certification-item { background: var(--surface) !important; color: var(--text); border-color: var(--border) !important; box-shadow: none !important; }
+    .highlight:hover, .module-card:hover { background: var(--surface-soft) !important; }
+    .module-card::before { background: var(--primary); }
+    .module-icon, .module-arrow { color: var(--primary); }
+    .contact-card { background: var(--surface-solid); color: var(--text); border-color: var(--border); box-shadow: 12px 12px 0 var(--primary); }
+    .contact-card p { color: var(--text-2); }
+    .contact-btn { color: var(--text); border-color: var(--border) !important; }
+    .contact-btn:hover { background: var(--primary); color: #07131d; }
+    .module-modal { background: rgba(4, 8, 12, .82) !important; background-image: none !important; }
+    .module-modal .modal-inner { background: var(--surface-solid); background-image: none !important; }
+    .modal-topbar { background: var(--surface); border-color: var(--border); }
+    .modal-heading-icon { background: var(--primary); color: #07131d; }
+    .modal-close { background: var(--surface-soft); color: var(--text); }
+    .tab[aria-selected="true"] { color: var(--primary); background: var(--surface-soft); }
+    .back-top { background: var(--primary); color: #07131d; }
+    /* Remove the abrupt outer frame while keeping card separators intact. */
+    .module-grid,
+    #modules .module-grid { border: 0 !important; }
+    .highlight-extra-tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .highlight-extra-tags span { padding:7px 12px; border:1px solid rgba(59,213,255,.24); border-radius:999px; color:var(--text-2); background:rgba(17,27,37,.72); font-size:12px; }
+    .highlight-extra-tags span:hover { color:var(--primary); border-color:var(--primary); box-shadow:0 0 16px rgba(59,213,255,.14); transform:translateY(-2px); }
+    .hobbies-section { padding-top: 24px; }
+    .hobbies-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .hobby-card { min-height:130px; padding:22px; display:flex; flex-direction:column; justify-content:flex-end; gap:7px; background:var(--surface) !important; border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); }
+    .hobby-card strong { color:var(--primary); font-size:20px; }
+    .hobby-card span { color:var(--text-2); font-size:12px; line-height:1.7; }
+    .hobby-card:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(59,213,255,.12) !important; }
+    #exp-tab-campus { order:1; } #exp-tab-work { order:2; } #exp-tab-current { order:3; } #exp-tab-intern { order:4; }
+    #skillsModal .progress > span { transform:scaleX(0); transform-origin:left center; }
+    #skillsModal.active .progress > span { animation:skillFill 1s cubic-bezier(.2,.8,.2,1) forwards; }
+    @keyframes skillFill { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+    @media (max-width:680px) { .hobbies-grid { grid-template-columns:1fr; } }
+    .highlights { border: 0 !important; }
   </style>
 </head>
 
@@ -3834,6 +3996,14 @@
 
         </div>
 
+        <div class="highlight-extra-tags" aria-label="补充关键标签">
+          <span>共青团团员</span>
+          <span>中学学生会文体部成员</span>
+          <span>曾任班长</span>
+          <span>网站 / PPT / 表格制作</span>
+          <span>多项人工智能证书</span>
+        </div>
+
       </div>
 
     </section>
@@ -4059,6 +4229,21 @@
          Contact
          ================================ -->
 
+    <section id="hobbies" class="module-section hobbies-section">
+      <div class="container">
+        <div class="module-section-head reveal">
+          <div class="section-kicker">Interests</div>
+          <h2>我的爱好</h2>
+          <p>工作与学习之外，也期待通过共同兴趣认识更多朋友。</p>
+        </div>
+        <div class="hobbies-grid">
+          <article class="hobby-card border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><strong>音乐</strong><span>吉他 · 钢琴 · 音乐创作</span></article>
+          <article class="hobby-card border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><strong>运动</strong><span>篮球 · 足球 · 羽毛球 · 乒乓球 · 台球</span></article>
+          <article class="hobby-card border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><strong>生活</strong><span>旅游 · 观影 · 发现新鲜事物</span></article>
+        </div>
+      </div>
+    </section>
+
     <section id="contact">
 
       <div class="container">
@@ -4169,7 +4354,7 @@
           </div>
 
           <p class="section-desc">
-            当前处于大学入学阶段，暂无正式工作或企业实习经历。
+            从校园组织、阶段性工作到当前学习准备，持续积累可迁移的组织、表达与实践能力。
           </p>
 
         </div>
@@ -4189,8 +4374,10 @@
             id="exp-tab-campus"
             tabindex="0"
           >
-            校园 / 当前阶段
+            校园
           </button>
+
+          <button class="tab" role="tab" aria-selected="false" aria-controls="exp-current" id="exp-tab-current" tabindex="-1">当前阶段</button>
 
           <button
             class="tab"
@@ -4224,6 +4411,31 @@
           aria-labelledby="exp-tab-campus"
         >
 
+          <div class="timeline">
+
+            <article class="timeline-item border-glow-card reveal" data-border-glow>
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="timeline-date">中学阶段</div>
+              <div><div class="timeline-title">学生会文体部副部长｜班长</div><div class="timeline-meta">校园组织与班级管理</div><ul class="bullet-list"><li>主导组织班班唱、校运动会、英语配音大赛等活动，负责策划、协调与现场执行。</li><li>作为班长承担班级沟通与事务推进，培养组织统筹、团队协作与责任意识。</li></ul></div>
+            </article>
+
+            <article class="timeline-item border-glow-card reveal" data-border-glow>
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="timeline-date">中学阶段</div>
+              <div><div class="timeline-title">学习标兵｜英语学习协助</div><div class="timeline-meta">学习实践与经验分享</div><ul class="bullet-list"><li>协助英语老师完成部分教学与答疑工作，并在校级表彰大会分享个人学习经验。</li></ul></div>
+            </article>
+
+            <article class="timeline-item border-glow-card reveal" data-border-glow>
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="timeline-date">中学阶段</div>
+              <div><div class="timeline-title">共青团团员｜团组织活动协助</div><div class="timeline-meta">校园团务与公共活动</div><ul class="bullet-list"><li>协助团组织完成团内活动，参与校内玉兰花节、优秀团支部评选等工作。</li></ul></div>
+            </article>
+
+          </div>
+
+        </div>
+
+        <div id="exp-current" class="tab-panel" role="tabpanel" aria-labelledby="exp-tab-current" hidden>
           <div class="timeline">
 
             <article class="timeline-item border-glow-card reveal" data-border-glow>
@@ -4281,9 +4493,7 @@
           hidden
         >
 
-          <div class="empty-state">
-            暂无正式工作经历。当前阶段重点积累校园项目、竞赛与实践经验。
-          </div>
+          <div class="timeline"><article class="timeline-item border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="timeline-date">2026.7–2026.8<br>天津</div><div><div class="timeline-title">数学家教</div><div class="timeline-meta">个性化辅导与学习支持</div><ul class="bullet-list"><li>围绕学生学习情况制定辅导计划，帮助梳理数学知识体系与解题方法。</li></ul></div></article><article class="timeline-item border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="timeline-date">2026.7</div><div><div class="timeline-title">高中学习路径指导</div><div class="timeline-meta">天津 · 面向新高中生</div><ul class="bullet-list"><li>分享高中阶段学习方法与个人经验，协助新生规划学习路径、目标与节奏。</li></ul></div></article></div>
 
         </div>
 
@@ -4419,6 +4629,14 @@
           <div class="project-grid">
 
             <article class="card border-glow-card reveal" data-border-glow>
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="project-top"><div><div class="project-title">Vibe Coding 前端网站实践</div><div class="project-meta">自主学习 · 个人实践 · 持续进行</div></div><div class="project-icon" aria-hidden="true">&lt;/&gt;</div></div>
+              <p class="project-desc">通过自主学习 Vibe Coding 工作流，结合 AI 辅助完成网页结构设计、前端样式编写与交互优化，将想法快速转化为可访问的网站。</p>
+              <div class="project-tags"><span class="tag">Vibe Coding</span><span class="tag">HTML / CSS</span><span class="tag">AI 辅助编程</span><span class="tag">前端实践</span></div>
+              <div class="result-box"><strong>实践结果：</strong>独立搭建个人网站并持续迭代页面体验，形成从构思、实现到优化的完整练习闭环。</div>
+            </article>
+
+            <article class="card border-glow-card reveal" data-border-glow>
 
               <span class="edge-light" aria-hidden="true"></span>
 
@@ -4512,9 +4730,7 @@
           hidden
         >
 
-          <div class="empty-state">
-            暂无正式竞赛经历。当前目标为参与「浪尖儿社区」竞赛项目及其他大学阶段实践机会。
-          </div>
+          <div class="project-grid"><article class="card border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="project-top"><div><div class="project-title">机器人与人工智能赛事备战</div><div class="project-meta">持续准备 · 竞赛方向探索</div></div><div class="project-icon" aria-hidden="true">◎</div></div><p class="project-desc">正在积极备战先进机器人及仿真技术大赛（RST）、睿抗机器人开发者大赛（RAICOM）、AiC、iCAN 等赛事，持续补足技术基础并积累团队项目经验。</p><div class="project-tags"><span class="tag">RST</span><span class="tag">RAICOM</span><span class="tag">AiC</span><span class="tag">iCAN</span></div></article></div>
 
         </div>
 
@@ -4588,7 +4804,7 @@
           </div>
 
           <p class="section-desc">
-            能力等级根据目前个人简历素材整理，仅代表现阶段掌握程度，不替代正式技能认证。
+            依据自我实践认知打分，并非正式技能认证。
           </p>
 
         </div>
@@ -4711,11 +4927,11 @@
 
                 <div class="skill-name">
                   <span>内容表达</span>
-                  <span>78%</span>
+                  <span>90%</span>
                 </div>
 
                 <div class="progress">
-                  <span style="width:78%"></span>
+                  <span style="width:90%"></span>
                 </div>
 
               </div>
@@ -4747,11 +4963,11 @@
 
                 <div class="skill-name">
                   <span>前端开发</span>
-                  <span>45%</span>
+                  <span>65%</span>
                 </div>
 
                 <div class="progress">
-                  <span style="width:45%"></span>
+                  <span style="width:65%"></span>
                 </div>
 
               </div>
@@ -4760,12 +4976,12 @@
               <div class="skill-row">
 
                 <div class="skill-name">
-                  <span>Web 基础</span>
-                  <span>45%</span>
+                  <span>理科基础</span>
+                  <span>80%</span>
                 </div>
 
                 <div class="progress">
-                  <span style="width:45%"></span>
+                  <span style="width:80%"></span>
                 </div>
 
               </div>
@@ -4775,11 +4991,11 @@
 
                 <div class="skill-name">
                   <span>AI 辅助编程</span>
-                  <span>58%</span>
+                  <span>72%</span>
                 </div>
 
                 <div class="progress">
-                  <span style="width:58%"></span>
+                  <span style="width:72%"></span>
                 </div>
 
               </div>
@@ -4811,11 +5027,11 @@
 
                 <div class="skill-name">
                   <span>自主学习</span>
-                  <span>88%</span>
+                  <span>92%</span>
                 </div>
 
                 <div class="progress">
-                  <span style="width:88%"></span>
+                  <span style="width:92%"></span>
                 </div>
 
               </div>
@@ -4839,11 +5055,11 @@
 
                 <div class="skill-name">
                   <span>团队协作</span>
-                  <span>80%</span>
+                  <span>85%</span>
                 </div>
 
                 <div class="progress">
-                  <span style="width:80%"></span>
+                  <span style="width:85%"></span>
                 </div>
 
               </div>
@@ -5041,11 +5257,11 @@
                 <div>
 
                   <div class="honor-name">
-                    高考英语 121 分
+                    中国共青团团员
                   </div>
 
                   <div class="honor-sub">
-                    英语能力基础
+                    团员身份与校园责任
                   </div>
 
                 </div>
