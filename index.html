@@ -2303,11 +2303,34 @@
       .hero-hello { margin-bottom: 8px; font-size: 30px; }
       .hero-motto { margin-top: 20px; font-size: 16px; }
       .hero-motto::after { font-size: 9px; }
+      .mobile-keywords {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        width: min(100%, 340px);
+        margin: 15px auto 0;
+        overflow-x: auto;
+        padding: 2px 2px 7px;
+        scrollbar-width: none;
+      }
+      .mobile-keywords::-webkit-scrollbar { display: none; }
+      .mobile-keywords span {
+        flex: 0 0 auto;
+        padding: 5px 9px;
+        border: 1px solid rgba(59,213,255,.42);
+        border-radius: 999px;
+        color: var(--primary-2);
+        background: rgba(17,27,37,.72);
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        font-size: 10px;
+        letter-spacing: .04em;
+        white-space: nowrap;
+      }
       .hero-corner { bottom: 16px; font-size: 10px; }
       .hero-intro { left: 28px; max-width: 165px; }
       .hero-intro::before { display: none; }
       .hero-location { right: 22px; }
-      .hero-location .round-arrow { width: 45px; height: 45px; font-size: 25px; }
+      .hero-location .round-arrow { display: none; }
       .hero-location small { display: none; }
       .home-highlights { padding-top: 70px; }
       .highlights { grid-template-columns: 1fr 1fr; }
@@ -2336,8 +2359,20 @@
     .brand {
       font-size: clamp(40px, 3.15vw, 50px);
       line-height: 1;
+      font-family: "Segoe Script", "Brush Script MT", cursive !important;
+      font-weight: 900;
       letter-spacing: -.09em;
       transition: transform .25s ease;
+    }
+    .brand span { font-family: inherit !important; }
+    .brand-avatar {
+      width: 42px;
+      height: 42px;
+      margin-left: 12px;
+      border: 1px solid rgba(59,213,255,.7);
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 0 3px rgba(59,213,255,.10);
     }
     .brand:hover { transform: translateY(-2px) rotate(-1deg); }
     .nav-links {
@@ -3344,10 +3379,48 @@
       cursor: pointer;
       box-shadow: 7px 7px 0 rgba(7,19,29,.86);
       transition: transform .25s ease, box-shadow .25s ease;
+      text-decoration: none;
     }
     .highlights-float span { font-size: 17px; font-weight: 950; letter-spacing: .12em; }
-    .highlights-float i { position: absolute; top: 12px; right: 14px; font-size: 12px; font-style: normal; }
+    .highlights-float i { font-size: 28px; }
+    .highlights-float i { position: absolute; inset: 0; display: grid; place-items: center; width: 100%; height: 100%; margin: 0; font-size: 34px !important; font-style: normal; line-height: 1; animation: arrowBob 1.15s ease-in-out infinite; }
+    @keyframes arrowBob { 0%,100% { transform: translateY(-4px); } 50% { transform: translateY(5px); } }
     .highlights-float:hover { transform: rotate(-7deg) scale(1.06); box-shadow: 10px 10px 0 rgba(7,19,29,.86); }
+    .mobile-keywords { display: none; }
+    .homepage-tags { padding: 0 0 54px; background: var(--bg); scroll-margin-top: 86px; }
+    .homepage-tags-head { display:flex; align-items:baseline; gap:14px; margin-bottom:16px; border-top:1px solid var(--border); padding-top:14px; }
+    .homepage-tags-head span { color:var(--primary); font-size:11px; letter-spacing:.16em; text-transform:uppercase; }
+    .homepage-tags-head strong { color:var(--text); font-size:20px; }
+    .homepage-tags-list { display:flex; flex-wrap:wrap; gap:9px; }
+    .homepage-tags-list span { padding:7px 12px; border:1px solid rgba(59,213,255,.3); border-radius:999px; color:var(--text-2); background:rgba(17,27,37,.72); font-size:12px; }
+    .timeline-item > .work-photo-wrap { position:absolute !important; top:18px; right:18px; left:auto; bottom:auto; width:190px; height:138px; overflow:hidden; border-radius:16px; opacity:0; transform:translateY(-8px) scale(.96); transition:opacity 1s ease, transform 1s cubic-bezier(.2,.8,.2,1); pointer-events:none; }
+    #exp-work .timeline-item:first-child > div:nth-child(3) { padding-right:210px; }
+    .work-photo-wrap img { width:100%; height:100%; display:block; object-fit:cover; object-position:center; }
+    .work-photo-wrap.is-visible { opacity:1; transform:translateY(0) scale(1); }
+    @media (max-width:760px) { .timeline-item > .work-photo-wrap { width:130px; height:95px; top:14px; right:14px; } #exp-work .timeline-item:first-child > div:nth-child(3) { padding-right:145px; } }
+    .homepage-tags.reveal { opacity: 0; transform: translateY(22px); }
+    .homepage-tags.reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal { transition: opacity 1s ease, transform 1s cubic-bezier(.2,.8,.2,1); }
+    .homepage-highlight-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:22px; }
+    .homepage-highlight-grid .highlight { min-height:170px; padding:20px 16px; }
+    .homepage-highlight-grid .highlight-number { font-size:28px; }
+    .homepage-highlight-grid .highlight-title { font-size:15px; }
+    .homepage-highlight-grid .highlight-text { font-size:11px; line-height:1.6; }
+    @media (max-width: 760px) { .homepage-highlight-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width: 760px) {
+      .brand-avatar { width: 30px; height: 30px; margin-left: 8px; }
+      .back-top { display: none !important; }
+      .highlights-float {
+        top: auto;
+        left: auto;
+        right: 18px;
+        bottom: 18px;
+        width: 68px;
+        height: 68px;
+        box-shadow: 5px 5px 0 rgba(7,19,29,.86);
+      }
+      .highlights-float i { inset: 0; width: 100%; height: 100%; font-size: 28px !important; }
+    }
     .highlights-modal .modal-inner { overflow-y: auto; }
     .highlights-modal .home-highlights {
       min-height: calc(100% - 84px);
@@ -3375,9 +3448,9 @@
     .highlights-modal .highlight-text,
     .highlights-modal .highlight:hover .highlight-text { color: rgba(247,245,237,.72) !important; }
     @media (max-width: 760px) {
-      .highlights-float { top: 43%; left: 18px; width: 66px; height: 66px; box-shadow: 5px 5px 0 rgba(7,19,29,.86); }
-      .highlights-float span { font-size: 13px; }
-      .highlights-float i { top: 8px; right: 10px; font-size: 9px; }
+      .back-top { display: none !important; }
+      .highlights-float { top: auto; left: auto; right: 18px; bottom: 18px; width: 68px; height: 68px; box-shadow: 5px 5px 0 rgba(7,19,29,.86); }
+      .highlights-float i { inset: 0; width: 100%; height: 100%; font-size: 28px !important; }
     }
 
     /* 首页右侧简易简历：完全由 HTML/CSS 构建，配色取自页面自身。 */
@@ -3593,7 +3666,54 @@
     .highlight-extra-tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
     .highlight-extra-tags span { padding:7px 12px; border:1px solid rgba(59,213,255,.24); border-radius:999px; color:var(--text-2); background:rgba(17,27,37,.72); font-size:12px; }
     .highlight-extra-tags span:hover { color:var(--primary); border-color:var(--primary); box-shadow:0 0 16px rgba(59,213,255,.14); transform:translateY(-2px); }
-    .hobbies-section { padding-top: 24px; }
+    .hobbies-section { padding-top: 24px; scroll-margin-top: 24px; }
+    .game-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 18px;
+      padding: 17px 20px;
+      border: 1px solid var(--primary);
+      border-radius: 14px;
+      background: var(--surface-solid);
+      color: var(--primary-2);
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .22s ease, background .22s ease, box-shadow .22s ease;
+    }
+    .game-link span { color: var(--primary); font-size: 22px; line-height: 1; }
+    .game-link:hover, .game-link:focus-visible { background: var(--surface-soft); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(59,213,255,.14); }
+    .game-link:focus-visible { outline: 2px solid var(--primary-2); outline-offset: 4px; }
+    .friend-float { display: none; }
+    @media (max-width: 760px) {
+      .friend-float {
+        position: absolute;
+        z-index: 7;
+        top: 91px;
+        left: 18px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4px 8px;
+        width: 142px;
+        max-width: calc(50% - 26px);
+        min-height: 62px;
+        padding: 10px 11px;
+        border: 1px solid var(--primary);
+        border-radius: 12px;
+        background: var(--surface-solid);
+        color: var(--primary-2);
+        box-shadow: 4px 4px 0 rgba(7,19,29,.85);
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .friend-float strong { grid-column: 1 / -1; font-size: 15px; line-height: 1.4; }
+      .friend-float span { color: var(--text-2); font-size: 10px; line-height: 1.5; white-space: nowrap; }
+      .friend-float small { align-self: center; font-size: 9px; line-height: 1.5; white-space: nowrap; }
+      .friend-float:hover, .friend-float:active { background: var(--surface-soft); border-color: var(--primary-2); }
+      .friend-float:focus-visible { outline: 2px solid var(--primary-2); outline-offset: 4px; }
+    }
     .hobbies-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
     .hobby-card { min-height:130px; padding:22px; display:flex; flex-direction:column; justify-content:flex-end; gap:7px; background:var(--surface) !important; border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); }
     .hobby-card strong { color:var(--primary); font-size:20px; }
@@ -3605,7 +3725,77 @@
     @keyframes skillFill { from { transform:scaleX(0); } to { transform:scaleX(1); } }
     @media (max-width:680px) { .hobbies-grid { grid-template-columns:1fr; } }
     .highlights { border: 0 !important; }
+      @media (max-width: 760px) {
+      .hero-title .mobile-keywords {
+        display: flex !important;
+        display: grid !important;
+        gap: 7px;
+        flex-wrap: nowrap;
+        gap: 8px;
+        width: min(100%, 340px);
+        justify-content: center;
+        margin: 15px auto 0;
+        overflow: visible;
+        padding: 2px 2px 7px;
+      }
+      .hero-title .mobile-keywords span {
+        flex: 0 0 auto;
+        padding: 5px 9px;
+        border: 1px solid rgba(59,213,255,.42);
+        border-radius: 999px;
+        color: var(--primary-2);
+        background: rgba(17,27,37,.72);
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        font-size: 10px;
+        letter-spacing: .04em;
+        white-space: nowrap;
+      }
+      .hero-title .mobile-keywords > div { display:flex; justify-content:center; gap:8px; flex-wrap:nowrap; }
+      .hero-title .mobile-keywords > div { width:max-content; max-width:100%; justify-self:center; }
+      .hero-title .mobile-keywords > div:nth-child(1) span { padding-inline: 10px; }
+      .hero-title .mobile-keywords > div:nth-child(2) span { padding-inline: 9px; }
+      .hero-title .mobile-keywords > div { gap: 7px; }
+      .hero-title .mobile-keywords > div:nth-child(2),
+      .hero-title .mobile-keywords > div:nth-child(3) { gap: 5px; }
+      .hero-title .mobile-keywords > div:nth-child(2) span,
+      .hero-title .mobile-keywords > div:nth-child(3) span { padding: 4px 6px; font-size: 8px; }
+    }
+
+    /* Photo covers follow each card's rounded outline without distorting images. */
+    .homepage-highlight-grid .highlight { padding-bottom: 58px; }
+    .homepage-highlight-grid .highlight > .highlight-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      overflow: hidden;
+      border-radius: inherit;
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 1s cubic-bezier(.22,.68,.2,1);
+      pointer-events: none;
+    }
+    .highlight-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .homepage-highlight-grid .photo-open > .highlight-photo { clip-path: inset(0 0 0 0); }
+    .homepage-highlight-grid .highlight > .highlight-photo-toggle {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      z-index: 4;
+      min-width: 48px;
+      min-height: 32px;
+      padding: 5px 9px;
+      border: 1px solid var(--primary);
+      border-radius: 999px;
+      background: #111b25;
+      color: var(--primary-2);
+      font: 600 11px/1.2 sans-serif;
+      cursor: pointer;
+    }
+    .highlight-photo-toggle:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) {
+      .homepage-highlight-grid .highlight > .highlight-photo { transition: none; }
+    }
   </style>
+  <link rel="stylesheet" href="hobby-details.css">
 </head>
 
 <body>
@@ -3620,6 +3810,7 @@
       <a class="brand" href="#top" aria-label="返回首页">
         <span class="brand-mark">佟</span>
         <span>佟子铭</span>
+        <img class="brand-avatar" src="logo.jpg" alt="佟子铭头像">
       </a>
 
       <nav class="nav-links" aria-label="主导航">
@@ -3684,18 +3875,27 @@
               <span class="hero-hello">Hello, I’m</span>
               <div class="hero-name"><span>TONG</span><span>ZIMING</span></div>
               <div class="hero-motto">自省，自行，自醒</div>
+              <div class="mobile-keywords" aria-label="个人关键词">
+                <div><span>多AI认证证书</span><span>前端开发</span></div>
+                <div><span>人工智能专业</span><span>熟练掌握vibe coding</span><span>共青团团员</span></div>
+                <div><span>天津优秀学生</span><span>精通英语口语</span><span>网站 / PPT / 表格</span><span>音乐创作</span></div>
+              </div>
             </div>
           </div>
         </div>
+        <a class="friend-float" href="#hobbies" aria-label="交个朋友（深入了解）：前往我的爱好">
+          <strong>交个朋友</strong>
+          <span>（深入了解）</span>
+          <small aria-hidden="true">CLICK ↘</small>
+        </a>
         <a class="certification-float" href="#certification" aria-label="查看专业认证">
           <span>Certification</span>
           <strong>专业认证</strong>
           <i aria-hidden="true">↘</i>
         </a>
-        <button class="highlights-float" type="button" data-modal="highlightsModal" aria-label="查看关键标签">
-          <span>标签</span>
-          <i aria-hidden="true">✦</i>
-        </button>
+        <a class="highlights-float" href="#homepage-tags" aria-label="定位关键标签">
+          <i aria-hidden="true">↓</i>
+        </a>
         <aside class="hero-mini-resume" aria-label="佟子铭简易个人简历">
           <img class="mini-resume-avatar" src="logo.jpg" alt="佟子铭个人头像">
           <div class="mini-resume-heading">
@@ -3865,24 +4065,6 @@
     </section>
 
 
-    <section class="mobile-resume-screen" aria-label="移动端简易个人简历">
-      <aside class="hero-mini-resume">
-        <img class="mini-resume-avatar" src="logo.jpg" alt="佟子铭个人头像">
-        <div class="mini-resume-heading">
-          <strong>佟子铭</strong>
-          <span>中南财经政法大学 · 准大一新生</span>
-        </div>
-        <dl class="mini-resume-list">
-          <div><dt>所在地</dt><dd>湖北 · 武汉</dd></div>
-          <div><dt>院校专业</dt><dd>中南财经政法大学<br>人工智能</dd></div>
-          <div><dt>高考成绩</dt><dd>605 分</dd></div>
-          <div><dt>当前阶段</dt><dd>2026 入学</dd></div>
-          <div><dt>邮箱</dt><dd>tongziming0330<br>@icloud.com</dd></div>
-        </dl>
-      </aside>
-    </section>
-
-
     <!-- ================================
          Highlights
          30 秒了解我的关键标签
@@ -3945,15 +4127,15 @@
             <span class="edge-light" aria-hidden="true"></span>
 
             <div class="highlight-number">
-              605分
+              3+项
             </div>
 
             <div class="highlight-title">
-              高考成绩
+              计算机技能
             </div>
 
             <div class="highlight-text">
-              高考总分 605 分，体现出扎实的综合学习基础。
+              能够独立完成网站、PPT、表格等数字内容制作，并熟练运用 AI 工具提升效率。
             </div>
 
           </article>
@@ -3997,11 +4179,13 @@
         </div>
 
         <div class="highlight-extra-tags" aria-label="补充关键标签">
+          <span>高考 605 分</span>
+          <span>人工智能证书</span>
           <span>共青团团员</span>
-          <span>中学学生会文体部成员</span>
+          <span>学生会文体部</span>
           <span>曾任班长</span>
-          <span>网站 / PPT / 表格制作</span>
-          <span>多项人工智能证书</span>
+          <span>武汉 · 2026 入学</span>
+          <span>人工智能专业</span>
         </div>
 
       </div>
@@ -4011,6 +4195,21 @@
       </div>
     </div>
 
+
+    <section id="homepage-tags" class="homepage-tags reveal" aria-label="关键标签">
+      <div class="container">
+        <div class="homepage-tags-head"><span>Highlights</span><strong>关键标签</strong></div>
+        <div class="homepage-highlight-grid">
+          <article class="highlight border-glow-card" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="highlight-number">3+称号</div><div class="highlight-title">高中阶段荣誉</div><div class="highlight-text">天津市优秀学生、优秀毕业生、科技创新标兵。</div><div class="highlight-photo" id="highlight-photo-0" aria-hidden="true"><img src="优秀学生.jpg" alt="高中阶段荣誉照片" loading="lazy"></div><button class="highlight-photo-toggle" type="button" aria-label="查看高中阶段荣誉照片" aria-controls="highlight-photo-0" aria-expanded="false">click</button></article>
+          <article class="highlight border-glow-card" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="highlight-number">3+项</div><div class="highlight-title">计算机技能</div><div class="highlight-text">网站、PPT、表格制作，并运用 AI 工具提升效率。</div><div class="highlight-photo" id="highlight-photo-1" aria-hidden="true"><img src="编程.jpg" alt="计算机技能照片" loading="lazy"></div><button class="highlight-photo-toggle" type="button" aria-label="查看计算机技能照片" aria-controls="highlight-photo-1" aria-expanded="false">click</button></article>
+          <article class="highlight border-glow-card" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="highlight-number">2种乐器</div><div class="highlight-title">乐器演奏基础</div><div class="highlight-text">钢琴、吉他演奏，并持续进行简单编曲与创作。</div><div class="highlight-photo" id="highlight-photo-2" aria-hidden="true"><img src="乐器.jpg" alt="乐器演奏基础照片" loading="lazy"></div><button class="highlight-photo-toggle" type="button" aria-label="查看乐器演奏基础照片" aria-controls="highlight-photo-2" aria-expanded="false">click</button></article>
+          <article class="highlight border-glow-card" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="highlight-number">4项</div><div class="highlight-title">长期运动项目</div><div class="highlight-text">足球、篮球、乒乓球、羽毛球，保持团队协作与持续投入。</div><div class="highlight-photo" id="highlight-photo-3" aria-hidden="true"><img src="篮球.jpg" alt="长期运动项目照片" loading="lazy"></div><button class="highlight-photo-toggle" type="button" aria-label="查看长期运动项目照片" aria-controls="highlight-photo-3" aria-expanded="false">click</button></article>
+        </div>
+        <div class="homepage-tags-list">
+          <span>高考 605 分</span><span>人工智能专业</span><span>武汉 · 2026 入学</span><span>人工智能证书</span><span>共青团团员</span><span>学生会文体部</span><span>曾任班长</span>
+        </div>
+      </div>
+    </section>
 
     <!-- ================================
          Homepage Modules
@@ -4097,11 +4296,11 @@
             </span>
 
             <span class="module-title">
-              项目与个人实践
+              竞赛项目与个人实践
             </span>
 
             <span class="module-desc">
-              个人创作与项目实践内容
+              赛事备战、网站开发与音乐创作
             </span>
 
             <span class="module-arrow">
@@ -4181,6 +4380,10 @@
 
         </div>
 
+        <a class="game-link" href="https://f5e68afc4fc64f179e959940363727a4.app.workbuddy.link" target="_blank" rel="noopener noreferrer" aria-label="玩玩我开发的小游戏">
+          <strong>玩玩我开发的小游戏</strong><span aria-hidden="true">↗</span>
+        </a>
+
       </div>
 
     </section>
@@ -4237,9 +4440,9 @@
           <p>工作与学习之外，也期待通过共同兴趣认识更多朋友。</p>
         </div>
         <div class="hobbies-grid">
-          <article class="hobby-card border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><strong>音乐</strong><span>吉他 · 钢琴 · 音乐创作</span></article>
-          <article class="hobby-card border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><strong>运动</strong><span>篮球 · 足球 · 羽毛球 · 乒乓球 · 台球</span></article>
-          <article class="hobby-card border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><strong>生活</strong><span>旅游 · 观影 · 发现新鲜事物</span></article>
+          <button type="button" class="hobby-card border-glow-card reveal" data-border-glow data-modal="musicHobbyModal" aria-haspopup="dialog" aria-controls="musicHobbyModal"><span class="edge-light" aria-hidden="true"></span><small>01 / MUSIC</small><strong>音乐</strong><span>吉他与钢琴弹唱 · 首调思维 · 歌曲创编</span><span class="hobby-enter" aria-hidden="true">走进我的音乐世界 ↗</span></button>
+          <button type="button" class="hobby-card border-glow-card reveal" data-border-glow data-modal="sportsHobbyModal" aria-haspopup="dialog" aria-controls="sportsHobbyModal"><span class="edge-light" aria-hidden="true"></span><small>02 / MOVEMENT</small><strong>运动</strong><span>中学足球 MVP · 在运动中找到节奏</span><span class="hobby-enter" aria-hidden="true">看看我的运动时刻 ↗</span></button>
+          <button type="button" class="hobby-card border-glow-card reveal" data-border-glow data-modal="lifeHobbyModal" aria-haspopup="dialog" aria-controls="lifeHobbyModal"><span class="edge-light" aria-hidden="true"></span><small>03 / EVERYDAY</small><strong>生活</strong><span>旅行 · 观察日常 · 保持好奇</span><span class="hobby-enter" aria-hidden="true">翻开我的生活片段 ↗</span></button>
         </div>
       </div>
     </section>
@@ -4354,7 +4557,7 @@
           </div>
 
           <p class="section-desc">
-            从校园组织、阶段性工作到当前学习准备，持续积累可迁移的组织、表达与实践能力。
+            从校园活动组织、班级事务到暑期教学实践，持续积累沟通协调、知识表达与任务执行经验；目前处于大学入学阶段。
           </p>
 
         </div>
@@ -4416,19 +4619,19 @@
             <article class="timeline-item border-glow-card reveal" data-border-glow>
               <span class="edge-light" aria-hidden="true"></span>
               <div class="timeline-date">中学阶段</div>
-              <div><div class="timeline-title">学生会文体部副部长｜班长</div><div class="timeline-meta">校园组织与班级管理</div><ul class="bullet-list"><li>主导组织班班唱、校运动会、英语配音大赛等活动，负责策划、协调与现场执行。</li><li>作为班长承担班级沟通与事务推进，培养组织统筹、团队协作与责任意识。</li></ul></div>
+              <div><div class="timeline-title">学生会文体部副部长｜班长</div><div class="timeline-meta">活动策划 · 沟通协调 · 班级事务推进</div><ul class="bullet-list"><li>主导组织班班唱、校运动会、英语配音大赛等校园活动，参与从前期策划、人员协调到现场执行的全过程。</li><li>作为班长承担班级日常沟通与事务推进，在老师、同学与活动参与者之间做好信息传达和协作衔接。</li><li>通过兼顾活动组织与班级管理，积累任务统筹和团队配合经验，提升将想法落实为具体行动的能力。</li></ul></div>
             </article>
 
             <article class="timeline-item border-glow-card reveal" data-border-glow>
               <span class="edge-light" aria-hidden="true"></span>
               <div class="timeline-date">中学阶段</div>
-              <div><div class="timeline-title">学习标兵｜英语学习协助</div><div class="timeline-meta">学习实践与经验分享</div><ul class="bullet-list"><li>协助英语老师完成部分教学与答疑工作，并在校级表彰大会分享个人学习经验。</li></ul></div>
+              <div><div class="timeline-title">学习标兵｜英语学习协助</div><div class="timeline-meta">教学协助 · 学习答疑 · 公开表达</div><ul class="bullet-list"><li>协助英语老师开展部分教学与答疑工作，将自己的学习理解转化为便于同学理解的讲解。</li><li>在校级表彰大会分享个人学习经验，对学习方法进行梳理与总结，练习面向集体清晰表达观点。</li><li>在自主学习与帮助同学的过程中，加深对知识的理解，积累耐心沟通和经验分享的实践。</li></ul></div>
             </article>
 
             <article class="timeline-item border-glow-card reveal" data-border-glow>
               <span class="edge-light" aria-hidden="true"></span>
               <div class="timeline-date">中学阶段</div>
-              <div><div class="timeline-title">共青团团员｜团组织活动协助</div><div class="timeline-meta">校园团务与公共活动</div><ul class="bullet-list"><li>协助团组织完成团内活动，参与校内玉兰花节、优秀团支部评选等工作。</li></ul></div>
+              <div><div class="timeline-title">共青团团员｜团组织活动协助</div><div class="timeline-meta">校园团务 · 公共活动参与 · 协作支持</div><ul class="bullet-list"><li>协助团组织开展团内活动，参与校内玉兰花节、优秀团支部评选等相关工作。</li><li>在集体活动中配合完成分工任务，将个人参与融入组织协作，积累公共活动支持与执行经验。</li></ul></div>
             </article>
 
           </div>
@@ -4493,7 +4696,7 @@
           hidden
         >
 
-          <div class="timeline"><article class="timeline-item border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="timeline-date">2026.7–2026.8<br>天津</div><div><div class="timeline-title">数学家教</div><div class="timeline-meta">个性化辅导与学习支持</div><ul class="bullet-list"><li>围绕学生学习情况制定辅导计划，帮助梳理数学知识体系与解题方法。</li></ul></div></article><article class="timeline-item border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="timeline-date">2026.7</div><div><div class="timeline-title">高中学习路径指导</div><div class="timeline-meta">天津 · 面向新高中生</div><ul class="bullet-list"><li>分享高中阶段学习方法与个人经验，协助新生规划学习路径、目标与节奏。</li></ul></div></article></div>
+          <div class="timeline"><article class="timeline-item border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="timeline-date">2026.7–2026.8<br>天津</div><div><div class="timeline-title">数学家教</div><div class="timeline-meta">暑期教学实践 · 个性化辅导 · 知识讲解</div><ul class="bullet-list"><li>围绕学生的学习情况制定辅导计划，将知识梳理与解题方法讲解相结合，帮助学生建立数学知识之间的联系。</li><li>在辅导中解释解题思路与关键步骤，协助学生理解方法的适用条件，逐步形成更清晰的分析路径。</li><li>通过一对一教学积累知识表达与耐心沟通经验，练习从学习者的角度组织讲解内容。</li></ul></div><div class="work-photo-wrap" aria-hidden="true"><img src="教学.jpg" alt="数学家教教学照片" loading="lazy"></div></article><article class="timeline-item border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="timeline-date">2026.7</div><div><div class="timeline-title">高中学习路径指导</div><div class="timeline-meta">天津 · 面向新高中生 · 学习经验分享</div><ul class="bullet-list"><li>结合自己的高中学习经历，向新高中生分享学习方法与阶段经验，帮助其了解高中学习的要求与节奏。</li><li>围绕学习路径、阶段目标和时间安排提供规划参考，协助新生将较长周期的学习目标拆解为更具体的行动方向。</li><li>将个人经验整理为可交流、可参考的建议，在分享中提升信息组织与表达能力。</li></ul></div></article></div>
 
         </div>
 
@@ -4520,7 +4723,7 @@
 
 
   <!-- ==================================================
-       全屏模块：项目与个人实践
+       全屏模块：竞赛项目与个人实践
        ================================================== -->
 
   <div
@@ -4546,7 +4749,7 @@
             </small>
 
             <strong>
-              项目与个人实践
+              竞赛项目与个人实践
             </strong>
 
           </div>
@@ -4576,13 +4779,13 @@
             </div>
 
             <h2 class="section-title">
-              项目与个人实践
+              竞赛项目与个人实践
             </h2>
 
           </div>
 
           <p class="section-desc">
-            仅展示已有真实经历，不虚构商业项目、开发项目或实习成果。
+            以个人网站与音乐创作为实践起点，持续探索 AI 辅助开发、创意表达与机器人竞赛方向，记录已完成的实践和正在推进的准备。
           </p>
 
         </div>
@@ -4631,7 +4834,8 @@
             <article class="card border-glow-card reveal" data-border-glow>
               <span class="edge-light" aria-hidden="true"></span>
               <div class="project-top"><div><div class="project-title">Vibe Coding 前端网站实践</div><div class="project-meta">自主学习 · 个人实践 · 持续进行</div></div><div class="project-icon" aria-hidden="true">&lt;/&gt;</div></div>
-              <p class="project-desc">通过自主学习 Vibe Coding 工作流，结合 AI 辅助完成网页结构设计、前端样式编写与交互优化，将想法快速转化为可访问的网站。</p>
+              <p class="project-desc">以个人简历网站为载体，自主学习 Vibe Coding 工作流，结合 AI 辅助完成内容组织、页面结构、前端样式与交互实现，持续将展示需求转化为可访问、可操作的页面。</p>
+              <ul class="bullet-list" style="margin-bottom:18px;"><li>梳理个人经历、技能与作品内容，设计首页与分类模块，建立清晰的信息层级。</li><li>围绕手机端阅读体验持续调整关键词排布、卡片布局与锚点导航，兼顾不同屏幕下的展示需求。</li><li>实现滚动渐显、动态边框和照片覆盖等交互，并根据预览反馈修正字体、定位与样式覆盖问题。</li><li>在反复提出需求、检查效果与修改页面的过程中，积累 HTML、CSS 和 JavaScript 的实际应用经验。</li></ul>
               <div class="project-tags"><span class="tag">Vibe Coding</span><span class="tag">HTML / CSS</span><span class="tag">AI 辅助编程</span><span class="tag">前端实践</span></div>
               <div class="result-box"><strong>实践结果：</strong>独立搭建个人网站并持续迭代页面体验，形成从构思、实现到优化的完整练习闭环。</div>
             </article>
@@ -4691,11 +4895,11 @@
                 </li>
 
                 <li>
-                  独立参与从创作构思、旋律设计到基础编曲的完整实践过程。
+                  独立完成从创作构思、旋律设计到基础编曲的实践，将零散的音乐想法逐步组织为作品。
                 </li>
 
                 <li>
-                  持续尝试不同乐器组合与音乐结构，培养对细节、审美和作品完整性的关注。
+                  尝试不同乐器组合与音乐结构，探索和声、节奏及音色对表达的影响，持续关注细节与作品完整性。
                 </li>
 
                 <li>
@@ -4730,7 +4934,7 @@
           hidden
         >
 
-          <div class="project-grid"><article class="card border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="project-top"><div><div class="project-title">机器人与人工智能赛事备战</div><div class="project-meta">持续准备 · 竞赛方向探索</div></div><div class="project-icon" aria-hidden="true">◎</div></div><p class="project-desc">正在积极备战先进机器人及仿真技术大赛（RST）、睿抗机器人开发者大赛（RAICOM）、AiC、iCAN 等赛事，持续补足技术基础并积累团队项目经验。</p><div class="project-tags"><span class="tag">RST</span><span class="tag">RAICOM</span><span class="tag">AiC</span><span class="tag">iCAN</span></div></article></div>
+          <div class="project-grid"><article class="card border-glow-card reveal" data-border-glow><span class="edge-light" aria-hidden="true"></span><div class="project-top"><div><div class="project-title">机器人与人工智能赛事备战</div><div class="project-meta">备战进行中 · 技术基础积累 · 团队合作探索</div></div><div class="project-icon" aria-hidden="true">◎</div></div><p class="project-desc">围绕先进机器人及仿真技术大赛（RST）、睿抗机器人开发者大赛（RAICOM）、AiC、iCAN 等赛事持续开展备战，关注人工智能与机器人技术的实践应用，逐步明确适合自己的竞赛方向。</p><ul class="bullet-list" style="margin-bottom:18px;"><li>当前重点：补足编程与人工智能应用基础，将个人网站实践中积累的自主学习、资料整理与问题分析方法用于备战。</li><li>下一步计划：结合赛事规则与参赛要求筛选方向，明确所需技术、准备周期及可承担的任务。</li><li>合作目标：寻找适合的团队与项目，在任务分工、方案讨论和实际开发中积累协作经验。</li></ul><div class="project-tags"><span class="tag">RST</span><span class="tag">RAICOM</span><span class="tag">AiC</span><span class="tag">iCAN</span></div><div class="result-box"><strong>当前阶段：</strong>以技术学习、方向探索和参赛准备为主，后续将随实际进展补充具体项目、个人职责与成果。</div></article></div>
 
         </div>
 
@@ -5308,6 +5512,7 @@
   ></div>
 
 
+  <script src="hobby-details.js"></script>
   <script>
 
     /* ================================
@@ -5559,7 +5764,7 @@
 
     const moduleButtons =
       document.querySelectorAll(
-        ".module-card, .highlights-float"
+        ".module-card, .hobby-card[data-modal]"
       );
 
     const moduleModals =
@@ -6223,9 +6428,10 @@
                   entry.isIntersecting
                 ) {
 
-                  entry.target.classList.add(
-                    "is-visible"
-                  );
+                  entry.target.classList.add("is-visible");
+                  if (entry.target.matches("[data-border-glow]")) {
+                    setTimeout(() => runBorderGlowSweep(entry.target), 60);
+                  }
 
                   observer.unobserve(
                     entry.target
@@ -6311,7 +6517,43 @@
 
       });
 
+    document.querySelectorAll('.highlight-photo-toggle').forEach(button => {
+      const card = button.closest('.highlight');
+      const cover = card.querySelector('.highlight-photo');
+      const photo = cover.querySelector('img');
+      const title = card.querySelector('.highlight-title').textContent;
+      button.addEventListener('click', async () => {
+        if (button.disabled) return;
+        const open = !card.classList.contains('photo-open');
+        if (open) {
+          button.disabled = true;
+          try { await photo.decode(); }
+          catch {
+            button.disabled = false;
+            button.textContent = '重试';
+            button.setAttribute('aria-label', title + '照片加载失败，点击重试');
+            return;
+          }
+          button.disabled = false;
+        }
+        card.classList.toggle('photo-open', open);
+        cover.setAttribute('aria-hidden', String(!open));
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', (open ? '收起' : '查看') + title + '照片');
+        button.textContent = open ? '收起' : 'click';
+      });
+    });
+    const workTab = document.getElementById('exp-tab-work');
+    if (workTab) {
+      workTab.addEventListener('click', () => {
+        const photo = document.querySelector('#exp-work .work-photo-wrap');
+        if (!photo) return;
+        photo.classList.remove('is-visible');
+        setTimeout(() => photo.classList.add('is-visible'), 2000);
+      });
+    }
   </script>
 
 </body>
 </html>
+
