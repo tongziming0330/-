@@ -3688,7 +3688,8 @@
     .game-link:hover, .game-link:focus-visible { background: var(--surface-soft); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(59,213,255,.14); }
     .game-link:focus-visible { outline: 2px solid var(--primary-2); outline-offset: 4px; }
     .friend-float { display: none; }
-    @media (max-width: 760px) {
+    /* 手机与 iPad 共用首页快捷入口，覆盖平板横屏及连接触控板的情况。 */
+    @media (max-width: 1024px), (max-width: 1366px) and (any-pointer: coarse) {
       .friend-float {
         position: absolute;
         z-index: 7;
@@ -3726,7 +3727,7 @@
     @keyframes skillFill { from { transform:scaleX(0); } to { transform:scaleX(1); } }
     @media (max-width:680px) { .hobbies-grid { grid-template-columns:1fr; } }
     .highlights { border: 0 !important; }
-      @media (max-width: 760px) {
+    @media (max-width: 1024px), (max-width: 1366px) and (any-pointer: coarse) {
       .hero-title .mobile-keywords {
         display: flex !important;
         display: grid !important;
@@ -3760,6 +3761,60 @@
       .hero-title .mobile-keywords > div:nth-child(3) { gap: 5px; }
       .hero-title .mobile-keywords > div:nth-child(2) span,
       .hero-title .mobile-keywords > div:nth-child(3) span { padding: 4px 6px; font-size: 8px; }
+
+      .highlights-float {
+        top: auto;
+        right: auto;
+        left: max(18px, env(safe-area-inset-left));
+        bottom: max(18px, env(safe-area-inset-bottom));
+        width: 68px;
+        height: 68px;
+        box-shadow: 5px 5px 0 rgba(7,19,29,.86);
+      }
+      .highlights-float i { font-size: 28px !important; }
+      .hero-intro {
+        left: auto;
+        right: max(24px, env(safe-area-inset-right));
+        bottom: max(18px, env(safe-area-inset-bottom));
+        max-width: calc(100% - 120px);
+        text-align: right;
+        font-size: 10px;
+      }
+      .hero-intro::before,
+      .hero-location,
+      .hero-disciplines,
+      .back-top { display: none !important; }
+    }
+
+    /* 平板保留舒展的标题尺寸，同时沿用手机端的首屏布局。 */
+    @media (min-width: 761px) and (max-width: 1024px),
+           (min-width: 761px) and (max-width: 1366px) and (any-pointer: coarse) {
+      .nav { height: 76px; }
+      .nav-links { display: none; }
+      .hero { height: 100svh; min-height: 680px; }
+      .hero > .hero-grid { min-height: 680px; }
+      .hero-manifesto,
+      .hero-manifesto.reveal,
+      .hero-manifesto.reveal.is-visible { inset: 78px 0 105px; }
+      .orbit { width: 96vw; height: min(590px, 68svh); }
+      .hero-title { left: 50%; width: 80vw; transform: translate(-50%, -46%); }
+      .hero-name { font-size: 112px; letter-spacing: .025em; }
+      .hero-name span { padding-left: .025em; }
+      .hero-hello { font-size: 31px; }
+      .hero-motto { margin-top: 7px; font-size: 17px; letter-spacing: .025em; }
+      .hero-motto::before { display: none; }
+      .hero-motto::after { margin-top: 5px; font-size: 8px; }
+      .hero > .hero-grid > .hero-mini-resume { display: none; }
+      .certification-float {
+        top: 91px;
+        right: 18px;
+        min-width: 118px;
+        padding: 10px 11px;
+        box-shadow: 4px 4px 0 rgba(7,19,29,.85);
+      }
+      .certification-float strong { font-size: 13px; }
+      .certification-float span { font-size: 7px; }
+      .certification-float i { font-size: 18px; }
     }
 
     /* Photo covers follow each card's rounded outline without distorting images. */
